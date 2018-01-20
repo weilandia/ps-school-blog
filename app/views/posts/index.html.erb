@@ -5,6 +5,7 @@
         <td>Id</td>
         <td>Title</td>
         <td>Word Count</td>
+        <td>Author</td>
     </thead>
     <tbody>
         <% @posts.each do |post| %>
@@ -12,6 +13,7 @@
                 <td><%= post.id %></td>
                 <td><%= link_to post.title, post_path(post.id) %></td>
                 <td><%= post.word_count %></td>
+                <td><%= post.user.email %></td>
             </tr>
         <% end %>
     </tbody>

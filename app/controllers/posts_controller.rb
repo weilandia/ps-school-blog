@@ -1,21 +1,32 @@
 class PostsController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:show, :index]
+  
   def edit
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find_by(id: params[:id])
+    
+    unless @post.present?
+      flash[:alert] = "Post not found."
+      redirect_to root_path
+    end
   end
   
   def update
-    @post = Post.find(params[:id])
+    @post = current_user.posts.find_by(id: params[:id])
     
-    if @post.update_attributes(post_params)
-      redirect_to post_path(@post)
+    if @post.present?
+      if @post.update_attributes(post_params)
+        redirect_to post_path(@post)
+      else
+        flash[:alert] = @post.errors.full_messages
+        redirect_to edit_post_path(@post)
+      end
     else
-      flash[:alert] = @post.errors.full_messages
-      redirect_to edit_post_path(@post)
+      flash[:alert] = "Unauthorized."
+      redirect_to root_path
     end
   end
   
   def show
-    # /posts/:id
     @post = Post.find(params[:id])
   end
   
@@ -24,11 +35,11 @@ class PostsController < ApplicationController
   end
   
   def new
-    @post = Post.new
+    @post = current_user.posts.new
   end
   
   def create
-    @post = Post.new(post_params)
+    @post = current_user.posts.new(post_params)
     
     if @post.save
       redirect_to posts_path
@@ -38,8 +49,13 @@ class PostsController < ApplicationController
   end
   
   def destroy
-    @post = Post.find(params[:id])
-    @post.destroy
+    @post = current_user.posts.find_by(id: params[:id])
+
+    if @post.present?
+      @post.destroy
+    else
+      flash[:alert] = "Unauthorized."
+    end
     
     redirect_to root_path
   end

@@ -1,5 +1,7 @@
-<%= link_to "Edit", edit_post_path(@post) %>
-<%= link_to "Delete", post_path(@post), method: :delete %>
+<% if current_user == @post.user %>
+    <%= link_to "Edit", edit_post_path(@post) %>
+    <%= link_to "Delete", post_path(@post), method: :delete %>
+<% end %>
 
 <h1><%= @post.title %></h1>
 <p><%= @post.pretty_word_count %></p>
@@ -7,3 +9,7 @@
 <br>
 
 <p><%= @post.body %></p>
+
+<br>
+
+<p>Written by <%= @post.user.email %></p>

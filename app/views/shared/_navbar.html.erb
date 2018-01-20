@@ -5,8 +5,20 @@
         <li>
             <a href="/">Home</a>
         </li>
-        <li>
-            <a href="<%= new_post_path %>">Write a Post</a>
-        </li>
+        <% if user_signed_in? %>
+            <li>
+                <a href="<%= new_post_path %>">Write a Post</a>
+            </li>
+            <li>
+                <%= link_to "Sign out", destroy_user_session_path, method: :delete %>
+            </li>
+        <% else %>
+            <li>
+                <%= link_to "Sign in", new_user_session_path %>
+            </li>
+            <li>
+                <%= link_to "Sign up", new_user_registration_path %>
+            </li>
+        <% end %>
     </nav>
 </header>
