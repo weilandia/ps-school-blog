@@ -17,13 +17,13 @@
  @import "bootstrap-sprockets";
  
 //  Optional Theme
- @import "bootswatch/cerulean/variables";
+ @import "bootswatch/flatly/variables";
 //  
 
  @import "bootstrap";
 
 // Optional Theme as well
-    @import "bootswatch/cerulean/bootswatch";
+    @import "bootswatch/flatly/bootswatch";
 //
 
 .alert {

@@ -1,6 +1,6 @@
 <% if current_user == @post.user %>
-    <%= link_to "Edit", edit_post_path(@post) %>
-    <%= link_to "Delete", post_path(@post), method: :delete %>
+    <%= link_to "Edit", edit_post_path(@post), class: "btn btn-primary" %>
+    <%= link_to "Delete", post_path(@post), method: :delete, class: "btn btn-danger" %>
 <% end %>
 
 <h1><%= @post.title %></h1>
