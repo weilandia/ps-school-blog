@@ -14,4 +14,12 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require quill.global
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+  $(".js-heart-post").click(function(e) {
+    e.preventDefault();
+    console.log("Write the feature 🎉");
+  });
+});

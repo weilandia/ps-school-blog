@@ -9,8 +9,15 @@
 
 <br>
 
-<p><%= @post.body %></p>
+<p><%= @post.body.html_safe %></p>
 
 <br>
 
 <p>Written by <%= @post.user.email %></p>
+
+<h3>
+  <%= link_to "#heart", class: "js-heart-post", data: { post_id: @post.id } do %>
+    <%= fa_icon "heart-o" %>
+  <% end %>
+  <span class="js-heart-count" style="font-size:12px;"> 20</span>
+</h3>
