@@ -32,3 +32,16 @@
     color: red;
     font-style: italic;
 }
+
+a {
+    &:hover {
+        text-decoration: none;
+    }
+    &:focus {
+        text-decoration: none;
+    }
+}
+
+.form-control.post_body-quill {
+  height: 500px;
+}
