@@ -38,9 +38,9 @@ gem 'autoprefixer-rails'
 gem 'quilljs-rails'
 
 gem 'font-awesome-rails'
+gem 'pg'
 
 group :production do
-  gem 'pg'
   gem 'rails_12factor'
 end
 
