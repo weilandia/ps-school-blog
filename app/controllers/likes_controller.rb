@@ -1,7 +1,13 @@
 class LikesController < ApplicationController
   def create
-  end
+    post = Post.find(params[:post_id])
+    like = post.likes.create(user_id: current_user.id)
 
-  def destroy
+    render json: {
+      like: like.attributes,
+      post: {
+        like_count: post.likes.count
+      }
+    }
   end
 end

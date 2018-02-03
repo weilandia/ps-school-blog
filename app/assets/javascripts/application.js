@@ -20,6 +20,15 @@
 $(document).on('turbolinks:load', function() {
   $(".js-heart-post").click(function(e) {
     e.preventDefault();
-    console.log("Write the feature 🎉");
+    $.ajax({
+      method: "POST",
+      url: $(this).data("url"),
+      success: function(data) {
+        var likeCount = data.post.like_count;
+        $(".js-heart-count").text(likeCount);
+
+        $(".fa-heart-o").removeClass("fa-heart-o").addClass("fa-heart");
+      }
+    });
   });
 });

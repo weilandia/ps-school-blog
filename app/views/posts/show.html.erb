@@ -15,9 +15,11 @@
 
 <p>Written by <%= @post.user.email %></p>
 
-<h3>
-  <%= link_to "#heart", class: "js-heart-post", data: { post_id: @post.id } do %>
-    <%= fa_icon "heart-o" %>
-  <% end %>
-  <span class="js-heart-count" style="font-size:12px;"> 20</span>
-</h3>
+<% if current_user.present? %>
+  <h3>
+    <%= link_to "#heart", class: "js-heart-post", data: { url: post_likes_path(@post) } do %>
+      <%= fa_icon post_like_icon_class(@post) %>
+    <% end %>
+    <span class="js-heart-count heart-count"> <%= @post.likes.count %></span>
+  </h3>
+<% end %>
