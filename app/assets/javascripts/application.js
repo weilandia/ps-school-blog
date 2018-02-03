@@ -14,4 +14,24 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require bootstrap-sprockets
+//= require quill.global
 //= require_tree .
+
+$(document).on('turbolinks:load', function() {
+ 
+    $(".js-heart-post").on("click", function(event) {
+       event.preventDefault();
+       $.ajax({
+           method: "POST",
+           url: $(this).data("url"),
+           success: function(data) {
+             var likeCount = data.post.like_count;
+             $(".js-heart-count").text(likeCount);
+             
+             $(".fa-heart-o").removeClass("fa-heart-o").addClass("fa-heart");
+           }
+       })
+    });
+ 
+ 
+})

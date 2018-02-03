@@ -9,8 +9,17 @@
 
 <br>
 
-<p><%= @post.body %></p>
+<p><%= @post.body.html_safe %></p>
 
 <br>
 
 <p>Written by <%= @post.user.email %></p>
+
+<% if user_signed_in? %>
+  <h3>
+    <%= link_to "#heart", class: "js-heart-post", data: { url: "/posts/#{@post.id}/post_likes" } do %>
+      <%= fa_icon post_like_icon_class(@post) %>
+    <% end %>
+    <span class="js-heart-count heart-count"> <%= @post.post_likes.count %></span>
+  </h3>
+<% end %>

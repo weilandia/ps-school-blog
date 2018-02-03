@@ -1,5 +1,6 @@
 class Post < ActiveRecord::Base
     belongs_to :user
+    has_many :post_likes
     validates :title, :body, presence: true
     
     def self.titles
